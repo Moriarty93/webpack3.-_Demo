@@ -65,19 +65,34 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_index_css__);
+/* WEBPACK VAR INJECTION */(function(__dirname) {
 
+var _index = __webpack_require__(1);
 
-document.getElementById('wrap').innerHTML = 'Moriarty123123'
-const path = __webpack_require__(2)
-console.log(path)
-console.log('----------' + path.resolve(__dirname, 'dist'))
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "/"))
+var _index2 = _interopRequireDefault(_index);
+
+var _black = __webpack_require__(2);
+
+var _black2 = _interopRequireDefault(_black);
+
+var _aa = __webpack_require__(3);
+
+var _aa2 = _interopRequireDefault(_aa);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+{
+
+    var _text = 'Moriarty123123';
+    document.getElementById('wrap').innerHTML = _text;
+}
+var path = __webpack_require__(4);
+console.log(path);
+console.log('----------' + path.resolve(__dirname, 'dist'));
+/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 1 */
@@ -87,6 +102,18 @@ console.log('----------' + path.resolve(__dirname, 'dist'))
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -314,10 +341,10 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser

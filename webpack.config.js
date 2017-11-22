@@ -1,12 +1,15 @@
 const webpack = require('webpack') 
 // 引入路径
 const path = require('path')
+const glob = require('glob')
 // 引入js压缩插件  自带不需要安装
 const uglify = require('uglifyjs-webpack-plugin')
 //html打包 把src中html打包到dist中  需要安装
 const htmlPlugin = require('html-webpack-plugin')
 // 分离css
 const extractTextPlugin = require('extract-text-webpack-plugin')
+//删除废弃css
+const purifyCssPlugin = require('purifycss-webpack')
 //静态资源路径
 const webSite = {
     publicPath: '/'
@@ -55,13 +58,76 @@ module.exports = {
                 test: /\.css$/,
                 use: extractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader'
+                    use: ['css-loader', 'postcss-loader']
+                })
+            },
+            // {
+            //     test: /\.less$/,
+            //     use: [
+            //         {
+            //             loader: 'style-loader'
+            //         },
+            //         {
+            //             loader: 'css-loader'
+            //         },
+            //         {
+            //             loader: 'less-loader'
+            //         }
+            //     ]
+            // },
+            {
+                test: /\.less$/,
+                use: extractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'less-loader'
+                        },
+                    ]
                 })
             },
             {
                 test: /\.(htm|html)$/i,
                 loader: 'html-withimg-loader'
-            }
+            },
+            // {
+            //     test: /\.scss/,
+            //     use: [
+            //         {
+            //             loader: 'style-loader'
+            //         },
+            //         {
+            //             loader: 'css-loader'
+            //         },
+            //         {
+            //             loader: 'sass-loader'
+            //         }
+            //     ]
+            // }
+            {
+                test: /\.scss/,
+                use: extractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'sass-loader'
+                        },
+                    ]
+                })
+            },
+            {
+                test: /\.(jsx|js)$/,
+                use: {
+                    loader: 'babel-loader'
+                },
+                exclude: /node_modules/
+            },
         ]
     },
     //插件
@@ -82,7 +148,12 @@ module.exports = {
         }),
 
         // 分离css
-        new extractTextPlugin("css/index.css")
+        new extractTextPlugin("css/index.css"),
+
+        //删除css
+        new purifyCssPlugin({
+            paths: glob.sync(path.join(__dirname, 'src/*'))
+        })
     ],
     //开发服务
     devServer: {

@@ -6,4 +6,9 @@ body {
     width: 160px;
     height: 621px;
     background-image: url(../images/img.png);
+    border-radius: 5px;
+    box-shadow: 1px 0px 0px #fff;
+}
+.aaa {
+    color: #fff;
 }
