@@ -14,12 +14,12 @@ const purifyCssPlugin = require('purifycss-webpack')
 const webSite = {
     publicPath: '/'
 }
+
+
+const entry = require('./webpack_config/entry_webpack.js')
 module.exports = {
     //入口
-    entry: {
-        entry: './src/entry.js',
-        // entry2: './src/entry2.js'
-    },
+    entry: entry,
     // 出口
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -153,6 +153,25 @@ module.exports = {
         //删除css
         new purifyCssPlugin({
             paths: glob.sync(path.join(__dirname, 'src/*'))
+        }),
+
+        // 引入第三方库
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            JQuery: 'jquery'
+        }),
+
+        //版权注释
+        new webpack.BannerPlugin('Moriarty专属肉便器'),
+
+        //分离js
+        new webpack.optimize.CommonsChunkPlugin({
+            // 对应入口中要抽离的名字
+            name: ['jquery', 'vue'],
+            //路径
+            filename: 'assets/js/[name].js',
+            //抽离文件数
+            minChunks: 2
         })
     ],
     //开发服务
@@ -165,5 +184,14 @@ module.exports = {
         compress: true,
         //端口
         port: 8777
+    },
+    // 实时打包
+    watchOptions: {
+        // 检测频率ms
+        poll: 1000,
+        //延迟
+        aggregeateTimeout: 500,
+        //排除
+        ignored: /node_modules/,
     }
 }

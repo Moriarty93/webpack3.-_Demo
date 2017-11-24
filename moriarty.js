@@ -41,4 +41,6 @@ console.log('----------' + path.resolve(__dirname, 'dist'))
 // source-map      独立，打包最慢，包括行和列
 // cheap-module-source-map     独立文件，不包括列 
 // eval-source-map     不生成独立文件 有安全隐患 开发使用 包括行和列
-// cheap-module-eval-source-map   不包括列     
+// cheap-module-eval-source-map   不包括列    
+
+// 安装依赖   加了-dev安装到开发环境中 
