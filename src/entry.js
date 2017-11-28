@@ -13,3 +13,8 @@ console.log('----------' + path.resolve(__dirname, 'dist'))
 
 JQuery('#wrap').html('66666')
 jj()
+
+
+
+let json = require('../config.json')
+$('#json').html(json.name)

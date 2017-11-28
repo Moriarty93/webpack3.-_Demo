@@ -15,6 +15,7 @@ const webSite = {
     publicPath: '/'
 }
 
+const copyWebpackPlugin = require('copy-webpack-plugin')
 
 const entry = require('./webpack_config/entry_webpack.js')
 module.exports = {
@@ -172,7 +173,17 @@ module.exports = {
             filename: 'assets/js/[name].js',
             //抽离文件数
             minChunks: 2
-        })
+        }),
+
+        //打包静态资源
+        new copyWebpackPlugin([{
+            //要打包的地址
+            from: __dirname + '/src/public',
+            to: './public'
+        }]),
+
+        //热更新不更新时引入
+        new webpack.HotModuleReplacementPlugin()
     ],
     //开发服务
     devServer: {
